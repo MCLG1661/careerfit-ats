@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-import type { AnalysisResponse } from "./careerfit";
+import type { AnalysisResponse, Gap } from "./careerfit";
 
 const inputSchema = z.object({
   vaga: z.string().min(1).max(40000),
@@ -128,14 +128,17 @@ export const analyzeFit = createServerFn({ method: "POST" })
       gaps: Array.isArray(result["gaps"])
         ? (result["gaps"] as unknown[])
             .filter((g): g is Record<string, unknown> => !!g && typeof g === "object")
-            .map((g) => ({
-              requisito: String(g["requisito"] ?? ""),
-              importancia:
-                g["importancia"] === "alta" || g["importancia"] === "baixa"
-                  ? (g["importancia"] as "alta" | "baixa")
-                  : "media",
-              observacao: String(g["observacao"] ?? ""),
-            }))
+            .map(
+              (g): Gap => ({
+                requisito: String(g["requisito"] ?? ""),
+                importancia:
+                  g["importancia"] === "alta" || g["importancia"] === "baixa"
+                    ? (g["importancia"] as "alta" | "baixa")
+                    : "media",
+                observacao: String(g["observacao"] ?? ""),
+              }),
+            )
+
             .filter((g) => g.requisito)
         : [],
       pontosFortes: list(result["pontosFortes"]),
