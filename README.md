@@ -278,12 +278,6 @@ Foi solicitado o uso de:
 
 ```markdown
 
-```<details>
-<summary><strong>📋 Ver Mega Prompt completo utilizado no Lovable</strong></summary>
-
-<br>
-
-```text
 # CareerFit ATS
 
 Crie uma aplicação web responsiva chamada **CareerFit ATS**.
