@@ -37,25 +37,25 @@ https://careerfit-ats.lovable.app
 
 O usuário insere a descrição da oportunidade e o conteúdo do currículo para iniciar a análise de compatibilidade.
 
-![Tela inicial do CareerFit ATS](docs/screenshots/01-home.png)
+![Tela inicial do CareerFit ATS](docs/01-home.png)
 
 ### 2. Análise de aderência
 
 O CareerFit ATS estima a aderência entre currículo e vaga, identifica palavras-chave presentes e ausentes e analisa competências relevantes.
 
-![Análise de aderência do CareerFit ATS](docs/screenshots/02-analise-aderencia.png)
+![Análise de aderência do CareerFit ATS](docs/02-analise-aderencia.png)
 
 ### 3. Gaps e recomendações
 
 A aplicação identifica requisitos da vaga que não possuem evidência suficiente no currículo, destaca pontos fortes e apresenta recomendações — sem inventar experiências ou qualificações.
 
-![Gaps e recomendações do CareerFit ATS](docs/screenshots/03-gaps-recomendacoes.png)
+![Gaps e recomendações do CareerFit ATS](docs/03-gaps-recomendacoes.png)
 
 ### 4. Currículo otimizado para ATS
 
 Com base exclusivamente nas informações fornecidas pelo candidato, o CareerFit reorganiza e reescreve o currículo para melhorar sua apresentação e compatibilidade com sistemas ATS.
 
-![Currículo otimizado pelo CareerFit ATS](docs/screenshots/04-curriculo-otimizado.png)
+![Currículo otimizado pelo CareerFit ATS](docs/04-curriculo-otimizado.png)
 
 > **Princípio do projeto:** o CareerFit pode melhorar a forma como a experiência profissional é apresentada, mas nunca inventa experiência, competência ou qualificação.
 
