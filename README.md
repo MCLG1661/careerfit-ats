@@ -2,6 +2,12 @@
   <img src="docs/careerfit-ats-brand 2.png" alt="CareerFit ATS" width="850">
 </p>
 
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-Language-3178C6?logo=typescript)
+![Lovable](https://img.shields.io/badge/Built%20with-Lovable-FF4F8B)
+![Status](https://img.shields.io/badge/Status-Live-success)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
 # CareerFit ATS
 
 > **Seu currículo alinhado à vaga. Sem inventar quem você é.**
