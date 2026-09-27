@@ -55,43 +55,81 @@ export const analyzeFit = createServerFn({ method: "POST" })
       throw new Error("Serviço de análise indisponível no momento.");
     }
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
+        "X-Lovable-AIG-SDK": "fetch",
       },
       body: JSON.stringify({
-        model: "google/gemini-3.7-flash",
-        messages: [
+        model: "openai/gpt-6-astra",
+        reasoning: { effort: "medium" },
+        store: false,
+        stream: true,
+        text: { format: { type: "json_object" } },
+        input: [
           { role: "system", content: SYSTEM_PROMPT },
           {
             role: "user",
             content: `DESCRIÇÃO DA VAGA:\n"""\n${data.vaga}\n"""\n\nCURRÍCULO DO CANDIDATO:\n"""\n${data.curriculo}\n"""\n\nAnalise e responda apenas com o JSON.`,
           },
         ],
-        response_format: { type: "json_object" },
       }),
     });
 
     if (response.status === 429) {
       throw new Error("Muitas análises em sequência. Aguarde alguns instantes e tente novamente.");
     }
-    if (response.status === 402) {
+    if (response.status === 402 || response.status === 403) {
       throw new Error("O limite de uso da análise foi atingido. Tente novamente mais tarde.");
     }
-    if (!response.ok) {
-      console.error("AI gateway error", response.status, await response.text());
+    if (!response.ok || !response.body) {
+      console.error("AI gateway error", response.status, await response.text().catch(() => ""));
       throw new Error("Não foi possível concluir a análise. Tente novamente.");
     }
 
-    const payload = (await response.json()) as {
-      choices?: Array<{ message?: { content?: string } }>;
-    };
-    const raw = payload.choices?.[0]?.message?.content;
-    if (!raw) {
+    // Consume the SSE stream server-side and accumulate the final text.
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let raw = "";
+
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+
+      const frames = buffer.split("\n\n");
+      buffer = frames.pop() ?? "";
+
+      for (const frame of frames) {
+        for (const line of frame.split("\n")) {
+          if (!line.startsWith("data:")) continue;
+          const payload = line.slice(5).trim();
+          if (!payload || payload === "[DONE]") continue;
+          try {
+            const event = JSON.parse(payload) as {
+              type?: string;
+              delta?: string;
+              text?: string;
+            };
+            if (event.type === "response.output_text.delta" && typeof event.delta === "string") {
+              raw += event.delta;
+            } else if (event.type === "response.output_text.done" && typeof event.text === "string" && !raw) {
+              raw = event.text;
+            }
+          } catch {
+            // ignore keep-alive / non-JSON frames
+          }
+        }
+      }
+    }
+
+    if (!raw.trim()) {
       throw new Error("Não foi possível concluir a análise. Tente novamente.");
     }
+
 
     let parsed: unknown;
     try {
