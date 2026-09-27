@@ -443,7 +443,8 @@ Projeto desenvolvido para o desafio:
 **Marcus Corrêa Lopes Guedes**
 
 Linkedin: [Marcus Guedes](https://www.linkedin.com/in/marcusguedes/)
-GitHub: [MCLG](https://github.com/MCLG1661)
+
+GitHub: [MCLG1661](https://github.com/MCLG1661)
 
 ---
 
