@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/careerfit-ats-brand.png" alt="CareerFit ATS" width="850">
+  <img src="docs/careerfit-ats-brand 2.png" alt="CareerFit ATS" width="850">
 </p>
 
 # CareerFit ATS
