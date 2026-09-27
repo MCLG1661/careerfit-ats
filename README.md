@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/careerfit-ats-brand.png" alt="CareerFit ATS" width="850">
+</p>
+
 # CareerFit ATS
 
 > **Seu currículo alinhado à vaga. Sem inventar quem você é.**
