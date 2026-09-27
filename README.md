@@ -61,8 +61,6 @@ Com base exclusivamente nas informações fornecidas pelo candidato, o CareerFit
 
 ---
 
----
-
 ## O problema
 
 Muitos candidatos possuem experiências compatíveis com uma oportunidade, mas seus currículos não apresentam essas informações de maneira suficientemente clara ou alinhada à linguagem utilizada na descrição da vaga.
