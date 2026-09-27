@@ -277,6 +277,13 @@ Foi solicitado o uso de:
 <summary><strong>Clique para visualizar o Mega Prompt utilizado</strong></summary>
 
 ```markdown
+
+```<details>
+<summary><strong>📋 Ver Mega Prompt completo utilizado no Lovable</strong></summary>
+
+<br>
+
+```text
 # CareerFit ATS
 
 Crie uma aplicação web responsiva chamada **CareerFit ATS**.
@@ -291,63 +298,428 @@ Princípio central:
 
 **"Seu currículo alinhado à vaga. Sem inventar quem você é."**
 
-A aplicação pode reorganizar, reescrever, resumir e destacar informações existentes no currículo, mas NUNCA deve inventar experiências profissionais, cargos, empresas, datas, formação acadêmica, certificações, ferramentas, tecnologias, idiomas, competências, resultados, métricas ou responsabilidades.
+A aplicação pode reorganizar, reescrever, resumir e destacar informações existentes no currículo, mas NUNCA deve inventar:
+
+- experiências profissionais;
+- cargos;
+- empresas;
+- datas;
+- formação acadêmica;
+- certificações;
+- ferramentas;
+- tecnologias;
+- idiomas;
+- competências;
+- resultados;
+- métricas;
+- responsabilidades.
 
 Se determinada competência ou requisito estiver presente na vaga, mas não puder ser comprovado pelo currículo fornecido, apresente-o como um GAP.
 
 Nunca acrescente esse requisito ao currículo otimizado.
 
-## Funcionalidades principais
+---
 
-A aplicação deve permitir:
+## Público-alvo
 
-1. colar a descrição da vaga;
-2. colar o currículo;
-3. analisar a compatibilidade;
-4. apresentar aderência estimada de 0 a 100%;
-5. identificar palavras-chave encontradas;
-6. identificar palavras-chave ausentes;
-7. identificar Hard Skills e Soft Skills;
-8. apresentar gaps;
-9. apresentar pontos fortes;
-10. fornecer recomendações;
-11. gerar uma versão ATS Friendly do currículo;
-12. exportar o currículo em PDF.
+Profissionais procurando emprego e que desejam adaptar seu currículo para uma vaga específica sem inserir informações falsas.
+
+A interface deve ser suficientemente simples para usuários sem conhecimento técnico.
+
+---
+
+## Design
+
+Utilize **shadcn/ui** como design system.
+
+Crie uma interface:
+
+- clean;
+- moderna;
+- profissional;
+- corporativa;
+- tecnológica;
+- acessível;
+- responsiva.
+
+Evite excesso de elementos decorativos, animações, gradientes ou aparência de landing page genérica criada por IA.
+
+### Paleta
+
+Utilize como referência:
+
+- azul-marinho como cor principal;
+- azul como cor secundária;
+- verde apenas para indicadores positivos;
+- amarelo/âmbar para atenção;
+- vermelho somente para gaps críticos ou erros;
+- fundo claro;
+- cards brancos;
+- bom contraste e espaçamento.
+
+Utilize tipografia **Inter** ou outra sans-serif profissional equivalente.
+
+---
+
+## Header
+
+No topo da aplicação apresente:
+
+**CareerFit ATS**
+
+Tagline:
+
+**Seu currículo alinhado à vaga. Sem inventar quem você é.**
+
+Inclua uma pequena identificação visual relacionada a carreira, documentos ou análise.
+
+Não utilize elementos visuais excessivos.
+
+---
+
+## Aviso de integridade
+
+Exiba de forma visível, mas discreta:
+
+**CareerFit melhora a apresentação das suas experiências reais. Nenhuma experiência, competência ou qualificação é inventada.**
+
+Esse princípio deve ser respeitado durante todo o processamento.
+
+---
+
+## Área de entrada
+
+Crie dois campos principais lado a lado em desktop e empilhados em dispositivos móveis.
+
+### Campo 1 — Descrição da vaga
+
+Título:
+
+**Descrição da vaga**
+
+Placeholder:
+
+"Cole aqui a descrição completa da oportunidade..."
+
+Permita textos longos.
+
+### Campo 2 — Currículo
+
+Título:
+
+**Seu currículo**
+
+Placeholder:
+
+"Cole aqui o conteúdo do seu currículo..."
+
+Permita textos longos.
+
+Mostre contador de caracteres de forma discreta.
+
+---
+
+## Botão principal
+
+Abaixo dos campos crie um botão destacado:
+
+**Analisar compatibilidade**
+
+O botão só deve ficar habilitado quando os dois campos possuírem conteúdo.
+
+Durante o processamento, mostrar estado de loading:
+
+**Analisando currículo e vaga...**
+
+---
+
+## Resultado da análise
+
+Após a análise, mostrar uma nova área chamada:
+
+# Análise de Aderência
+
+---
+
+### 1. Match ATS
+
+Mostrar um indicador percentual de 0 a 100.
+
+Exemplo:
+
+**82% de aderência estimada**
+
+Utilize um componente visual simples, como barra de progresso ou indicador circular.
+
+IMPORTANTE:
+
+Não apresente esse percentual como a pontuação real de um ATS específico.
+
+Mostrar abaixo:
+
+"Indicador baseado na correspondência entre requisitos, competências e palavras-chave identificadas na vaga e no currículo. O resultado não representa a pontuação de um ATS específico nem garante aprovação em processos seletivos."
+
+---
+
+### 2. Palavras-chave
+
+Criar duas áreas:
+
+#### Encontradas no currículo
+
+Mostrar palavras-chave relevantes presentes tanto na vaga quanto no currículo.
+
+Utilizar badges.
+
+#### Não identificadas no currículo
+
+Mostrar palavras-chave importantes da vaga que não foram encontradas ou comprovadas no currículo.
+
+Essas palavras NÃO devem ser automaticamente adicionadas ao currículo otimizado.
+
+Utilizar badges visualmente diferentes.
+
+---
+
+### 3. Competências
+
+Separar quando possível:
+
+#### Hard Skills
+
+Mostrar competências técnicas identificadas no currículo que correspondem à vaga.
+
+#### Soft Skills
+
+Mostrar competências comportamentais identificadas no currículo que tenham correspondência com a vaga.
+
+Não inferir competências que não estejam sustentadas pelo texto fornecido.
+
+---
+
+### 4. Gaps identificados
+
+Criar uma seção específica chamada:
+
+**Gaps em relação à vaga**
+
+Liste requisitos relevantes encontrados na descrição da vaga que não possuem evidência suficiente no currículo.
+
+Para cada gap, mostrar:
+
+- requisito;
+- importância aparente para a vaga;
+- indicação de que não foi identificado no currículo.
+
+Exemplo:
+
+"Python — requisito identificado na vaga, mas não encontrado no currículo fornecido."
+
+Não adicionar esses gaps ao currículo otimizado.
+
+---
+
+### 5. Pontos fortes
+
+Mostrar os principais fatores de aderência entre currículo e vaga.
+
+Exemplos:
+
+- experiência compatível;
+- ferramentas correspondentes;
+- conhecimentos;
+- responsabilidades semelhantes;
+- formação relevante;
+- resultados relacionados.
+
+Somente apresentar informações comprovadas pelo currículo.
+
+---
+
+### 6. Recomendações
+
+Criar uma seção:
+
+**Como melhorar sua apresentação para esta vaga**
+
+Fornecer recomendações práticas.
+
+Exemplos:
+
+- reposicionar competências já existentes;
+- destacar experiências relevantes;
+- utilizar terminologia compatível com a vaga quando semanticamente equivalente;
+- tornar resultados existentes mais visíveis;
+- melhorar clareza e estrutura;
+- reduzir informações pouco relevantes para aquela oportunidade.
+
+Não recomendar que o usuário alegue possuir uma competência que não possui.
+
+---
 
 ## Currículo ATS Friendly
 
-O currículo otimizado deve utilizar somente informações comprovadas pelo currículo original.
+Após a análise, criar uma seção:
 
-Deve:
+# Currículo Otimizado
+
+Gerar uma nova versão do currículo utilizando somente informações comprovadas pelo currículo original.
+
+O currículo otimizado deve:
 
 - utilizar estrutura simples;
 - possuir títulos de seção claros;
 - evitar tabelas complexas;
+- evitar elementos que dificultem leitura por ATS;
 - priorizar experiências relacionadas à vaga;
-- utilizar palavras-chave somente quando forem verdadeiras;
+- utilizar palavras-chave da vaga somente quando forem verdadeiras em relação ao currículo;
 - melhorar clareza;
 - melhorar concisão;
+- melhorar organização;
+- manter informações factuais;
 - preservar empresas, cargos e datas;
 - preservar formação e certificações reais;
 - preservar métricas quando existirem.
 
 Nunca criar métricas ou resultados inexistentes.
 
-## Design
+---
 
-Utilize **shadcn/ui**.
+## Estrutura sugerida do currículo
 
-A interface deve ser clean, moderna, profissional, corporativa, tecnológica, acessível e responsiva.
+Quando as informações estiverem disponíveis, organizar em:
 
-Utilize azul-marinho como cor principal, azul como secundária, verde para indicadores positivos, amarelo/âmbar para atenção e vermelho para gaps críticos ou erros.
+1. Nome e contato
+2. Resumo profissional
+3. Competências
+4. Experiência profissional
+5. Formação acadêmica
+6. Certificações
+7. Idiomas
+8. Projetos relevantes
 
-## Prioridade
+Não criar seções para as quais não existam informações no currículo original.
 
-Priorize o MVP:
+---
 
-Descrição da vaga + Currículo → Análise → Aderência → Gaps → Recomendações → Currículo ATS Friendly → PDF
+## Rastreabilidade
 
-Não implemente inicialmente:
+Acima do currículo otimizado, mostrar uma mensagem:
+
+**O CareerFit reorganizou e reescreveu apenas informações encontradas no currículo original. Revise o conteúdo antes de utilizá-lo.**
+
+Se possível, disponibilizar uma área chamada:
+
+**Principais ajustes realizados**
+
+Exemplos:
+
+- resumo profissional reorganizado;
+- competências relevantes reposicionadas;
+- terminologia alinhada à vaga;
+- experiências priorizadas;
+- estrutura simplificada para leitura ATS.
+
+---
+
+## Exportação
+
+Criar opção:
+
+**Exportar currículo em PDF**
+
+O PDF deve:
+
+- possuir aparência profissional;
+- ser legível;
+- ter estrutura simples;
+- utilizar texto selecionável sempre que tecnicamente possível;
+- evitar gráficos, barras de habilidade e elementos que prejudiquem leitura ATS.
+
+Se a exportação em PDF exigir implementação adicional, deixe a interface e a arquitetura preparadas para ela.
+
+---
+
+## Estados da aplicação
+
+Crie estados adequados para:
+
+- campos vazios;
+- processamento;
+- análise concluída;
+- erro;
+- conteúdo insuficiente.
+
+Se o currículo fornecido tiver conteúdo insuficiente para uma análise responsável, informe o usuário em vez de inventar resultados.
+
+---
+
+## Privacidade
+
+Mostrar uma mensagem discreta:
+
+**Evite inserir informações pessoais sensíveis desnecessárias. Revise os dados antes de utilizar ou compartilhar o currículo gerado.**
+
+Não criar alegações de segurança, criptografia ou armazenamento que não estejam realmente implementadas.
+
+---
+
+## Responsividade
+
+A aplicação deve funcionar corretamente em:
+
+- desktop;
+- tablet;
+- smartphone.
+
+No desktop, os campos da vaga e currículo podem aparecer lado a lado.
+
+No mobile, devem ficar empilhados.
+
+---
+
+## Acessibilidade
+
+Utilizar:
+
+- contraste adequado;
+- labels nos campos;
+- hierarquia clara de headings;
+- estados de foco;
+- botões identificáveis;
+- textos legíveis.
+
+---
+
+## Rodapé
+
+Criar rodapé simples:
+
+**CareerFit ATS — Currículos mais alinhados. Informações sempre verdadeiras.**
+
+Adicionar:
+
+"Esta ferramenta fornece uma análise estimada de aderência e não garante aprovação em processos seletivos."
+
+---
+
+## Prioridade de implementação
+
+Priorize primeiro o MVP funcional:
+
+1. entrada da descrição da vaga;
+2. entrada do currículo;
+3. análise de aderência;
+4. score estimado;
+5. palavras-chave encontradas;
+6. palavras-chave ausentes;
+7. competências;
+8. gaps;
+9. recomendações;
+10. currículo otimizado;
+11. exportação em PDF.
+
+Não implemente neste momento:
 
 - login;
 - cadastro;
@@ -357,6 +729,18 @@ Não implemente inicialmente:
 - pagamentos;
 - dashboard administrativo;
 - integração com e-mail.
+
+Essas funcionalidades poderão ser adicionadas posteriormente.
+
+---
+
+## Critério principal de qualidade
+
+O CareerFit ATS deve entregar uma experiência simples:
+
+**Vaga + Currículo → Análise → Aderência → Gaps → Recomendações → Currículo ATS Friendly → PDF**
+
+A aplicação deve parecer um produto profissional funcional, e não apenas uma demonstração visual.
 
 O princípio mais importante de todo o sistema é:
 
