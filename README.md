@@ -6,7 +6,6 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-Language-3178C6?logo=typescript)
 ![Lovable](https://img.shields.io/badge/Built%20with-Lovable-FF4F8B) 
 ![Status](https://img.shields.io/badge/Status-Live-success)
-![License](https://img.shields.io/badge/License-MIT-blue)
 
 # CareerFit ATS
 
